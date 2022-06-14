@@ -244,10 +244,10 @@ function renderCountdown(count) {
 	`;
 }
 
-function renderRaceStartView(track, racers) {
+function renderRaceStartView() {
   return `
 		<header>
-			<h1>Race: ${track.name}</h1>
+			<h1>Race: ${store.track_id}</h1>
 		</header>
 		<main id="two-columns">
 			<section id="leaderBoard">
