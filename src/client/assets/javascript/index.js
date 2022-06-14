@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function onPageLoad() {
+  console.log("page loaded");
   try {
     getTracks().then((tracks) => {
       const html = renderTrackCards(tracks);
@@ -316,12 +317,26 @@ function defaultFetchOpts() {
 
 // TODO - Make a fetch call (with error handling!) to each of the following API endpoints
 
-function getTracks() {
+async function getTracks() {
   // GET request to `${SERVER}/api/tracks`
+  try {
+    const response = await fetch(`${SERVER}/api/tracks`, defaultFetchOpts());
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    throw err;
+  }
 }
 
-function getRacers() {
+async function getRacers() {
   // GET request to `${SERVER}/api/cars`
+  try {
+    const response = await fetch(`${SERVER}/api/cars`, defaultFetchOpts());
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    throw err;
+  }
 }
 
 function createRace(player_id, track_id) {
@@ -339,8 +354,18 @@ function createRace(player_id, track_id) {
     .catch((err) => console.log("Problem with createRace request::", err));
 }
 
-function getRace(id) {
+async function getRace(id) {
   // GET request to `${SERVER}/api/races/${id}`
+  try {
+    const response = await fetch(
+      `${SERVER}/api/races/${id}`,
+      defaultFetchOpts()
+    );
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    throw e;
+  }
 }
 
 function startRace(id) {
@@ -352,8 +377,16 @@ function startRace(id) {
     .catch((err) => console.log("Problem with getRace request::", err));
 }
 
-function accelerate(id) {
+async function accelerate(id) {
   // POST request to `${SERVER}/api/races/${id}/accelerate`
   // options parameter provided as defaultFetchOpts
   // no body or datatype needed for this request
+  try {
+    const response = await fetch(
+      `${SERVER}/api/races/${id}/accelerate`,
+      defaultFetchOpts
+    );
+  } catch (err) {
+    throw err;
+  }
 }
