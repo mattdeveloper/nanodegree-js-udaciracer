@@ -80,6 +80,7 @@ async function handleCreateRace() {
   renderAt("#race", renderRaceStartView());
 
   // TODO - Get player_id and track_id from the store
+  const { track_id, player_id } = store;
 
   // const race = TODO - invoke the API call to create the race, then save the result
 
@@ -145,6 +146,7 @@ function handleSelectPodRacer(target) {
   target.classList.add("selected");
 
   // TODO - save the selected racer to the store
+  store.player_id = target.id;
 }
 
 function handleSelectTrack(target) {
@@ -160,6 +162,7 @@ function handleSelectTrack(target) {
   target.classList.add("selected");
 
   // TODO - save the selected track id to the store
+  store.track_id = target.id;
 }
 
 function handleAccelerate() {
